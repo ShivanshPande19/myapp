@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "586008772070",
+    "project_id": "cleanuppp-40250",
+    "storage_bucket": "cleanuppp-40250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586008772070:android:4b3e8939edea54f1faea27",
+        "android_client_info": {
+          "package_name": "com.example.cleanuppp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdLKsCgmuLx0H-I4J70cv6jxDapRStNv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
