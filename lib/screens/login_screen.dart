@@ -1,5 +1,7 @@
 import 'package:cleanuppp/Widgets/text_field_input.dart';
+import 'package:cleanuppp/resources/auth_methods.dart';
 import 'package:cleanuppp/util/colors.dart';
+import 'package:cleanuppp/util/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,12 +15,29 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passcontroller = TextEditingController();
+  bool _isLoading = false;
 
   @override
   void dispose() {
     super.dispose();
     _emailcontroller.dispose();
     _passcontroller.dispose();
+  }
+
+  void loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().loginUser(
+        email: _emailcontroller.text, password: _passcontroller.text);
+
+    if (res == 'success') {
+    } else {
+      showSnackBar(res, context);
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -59,8 +78,15 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               //login button
               InkWell(
+                onTap: loginUser,
                 child: Container(
-                  child: const Text('Log In'),
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ),
+                        )
+                      : const Text('Log In'),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -91,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){},
+                    onTap: () {},
                     child: Container(
                       child: const Text(
                         "Sign Up",
